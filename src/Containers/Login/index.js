@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import LoginFooter from './../../Components/LoginFooter'
 import {loginFailed, passwordShort, usernameShort} from './../../utils/formMsg'
 import axios from 'axios';
-
+import {userLogin, adminLogin} from './../../api/index';
+import post from './../../utils/post';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -15,16 +16,26 @@ class Login extends Component {
     document.getElementsByTagName('html')[0].className = 'login';
   }
   loginClick() {
-    if(!this.refs.username.value.length) {
-      this.setState({errMsg: usernameShort});
-      return;
+    if(!this.username.value.length) {
+      return this.setState({errMsg: usernameShort});
     }
-    if(this.refs.password.value.length < 6) {
-      this.setState({errMsg: passwordShort});
-      return;
+    if(this.password.value.length < 6) {
+      return this.setState({errMsg: passwordShort});
     }
-    let ulr;
-    axios.post()
+    let url = userLogin;
+    if(this.props.match.url.includes('admin')) {
+      url = adminLogin
+    }
+    console.log('begin');
+    post(url, {
+      password: this.username.value,
+      username: this.username.value
+    }).then(res => {
+      if(res.code === 404) {
+        return this.setState({errMsg: loginFailed});
+      }
+
+    });
   }
   render() {
     const errMsg = this.state.errMsg;
