@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import LoginFooter from './../../Components/LoginFooter'
 import {loginFailed, passwordShort, usernameShort} from './../../utils/formMsg'
-import axios from 'axios';
 import {userLogin, adminLogin} from './../../api/index';
-import post from './../../utils/post';
+import { post } from './../../utils/ajax';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 
@@ -37,8 +36,10 @@ class Login extends Component {
       if(res.code === 404) {
         return this.setState({errMsg: loginFailed});
       }
-      localStorage.setItem('userMsg', true);
-      this.props.loginSuccess(true);
+      localStorage.setItem('userImg', res.userImg);
+      localStorage.setItem('userId', res.userId);
+      localStorage.setItem('userName', res.userName);
+      this.props.loginSuccess({userImg: res.userImg, userId: res.userId, userName: res.userName});
     });
   }
   render() {
@@ -77,7 +78,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginSuccess: (userMsg) => dispatch({type: 'LOGIN_SUCCESS', userMsg})
+    loginSuccess: (usermsg) => dispatch({type: 'LOGIN_SUCCESS', usermsg})
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

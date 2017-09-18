@@ -4,10 +4,14 @@ const LOGINOUT = 'LOGINOUT';
 
 const Login = function(state, action) {
   if(!state) {
-    if(sessionStorage.getItem('userLogin')) {
+    if(localStorage.getItem('userImg') && localStorage.getItem('userId')) {
       return {
         logined: true,
-        usermsg: JSON.parse(sessionStorage.getItem('userLogin'))
+        usermsg: {
+          userImg: localStorage.getItem('userImg'),
+          userId: localStorage.getItem('userId'),
+          userName: localStorage.getItem('userName')
+        }
       }
     }
     return {

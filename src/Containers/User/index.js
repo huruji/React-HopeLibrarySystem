@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Header from './../../Components/Header/index';
+import Footer from './../../Components/Footer/index';
+import Banner from './../../Components/Banner/index';
+import Nav from './../../Components/Nav/index';
+import TableList from './../../Components/TableList/index';
+import Aside from './../../Components/Aside';
+import UserConfig from './../../config/user'
+import ReturnTable from './../Public/ReturnTable'
+
+const navLinkList = UserConfig.nav.index;
 
 class User extends Component {
-  constructor() {
-    super(props)
+  constructor(props) {
+    super(props);
   }
   render() {
+    console.log('props',this.props);
     if(!this.props.logined) {
       return (
         <Redirect to="/user/login"/>
       )
     }
     return(
-
       <div>
-        user
+        <Header />
+        <Banner userName={this.props.userName} userImg={this.props.userImg}/>
+        <section className="main">
+          <div className="container clearfix">
+            <Aside list={UserConfig.aside}/>
+            <section className="main-right">
+              <Nav linkList={navLinkList}/>
+              <section className="main-right-table">
+                <ReturnTable/>
+              </section>
+            </section>
+          </div>
+        </section>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    logined:state.Login.logined
+    logined: state.Login.logined,
+    userImg: state.Login.usermsg.userImg,
+    userName: state.Login.usermsg.userName
   }
 };
 
