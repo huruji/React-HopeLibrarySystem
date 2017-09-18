@@ -11,16 +11,16 @@ export default (props) => {
   const list = props.list.map((item, index) => {
     if(index === 0) {
       return (
-        <th className={`${item.className} t-left-padding`} key={index}>item.text</th>
+        <th className={`${item.className} t-left-padding`} key={index}>{item.text}</th>
       )
     }
     if(index === props.list.length -1) {
       return (
-        <th className={`${item.className} t-right-padding`} key={index}>item.text</th>
+        <th className={`${item.className} t-right-padding`} key={index}>{item.text}</th>
       )
     }
     return (
-      <th className={`${item.className}`} key={index}>item.text</th>
+      <th className={`${item.className}`} key={index}>{item.text}</th>
     )
   });
   return (

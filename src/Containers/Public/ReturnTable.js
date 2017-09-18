@@ -5,6 +5,7 @@ import {get} from './../../utils/ajax';
 import {userBorrowBook} from './../../api';
 import UserConfig from './../../config/user';
 import {connect} from 'react-redux';
+import {transBorrowBook} from './../../utils/transData'
 
 let headList = UserConfig.headList.user;
 let text = '';
@@ -23,7 +24,7 @@ class ReturnTable extends Component{
       }
       console.log(res.data);
       self.setState({
-        list: res.data
+        list: transBorrowBook(res.data)
       })
     })
   }

@@ -9,7 +9,7 @@ export const transBorrowBook = function (data) {
       text: item.returnBefore
     }, {
       text: '归还',
-      manageList: [
+      managerList: [
 
       ],
       bookID: item.bookID,
