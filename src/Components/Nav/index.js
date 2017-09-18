@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default (props) => {
-  const list = props.linkList.map((item) => {
+  const list = props.linkList.map((item, index) => {
     return (
-      <li className="main-right-nav-list-item">
+      <li className="main-right-nav-list-item" key={index}>
         <NavLink to={item.url} activeClassName="main-right-nav-list-item-active">{item.text}</NavLink>
       </li>
     )

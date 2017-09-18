@@ -12,7 +12,7 @@ export  function post(url, data) {
     xhr.send(sendData.join('&'));
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4) {
-        if((xhr.status >=200 && xhr.status < 300)) {
+        if((xhr.status >=200 && xhr.status < 300)|| (xhr.status===304)) {
           resolve(JSON.parse(xhr.responseText));
         }
       }
@@ -24,11 +24,11 @@ export function get(url) {
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
-    xhr.setRequestHeader("Access-Control-Allow-Credentials", true);
+    xhr.withCredentials = true;
     xhr.send(null);
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4) {
-        if((xhr.status >=200 && xhr.status < 300)) {
+        if((xhr.status >=200 && xhr.status < 300)|| (xhr.status===304)) {
           resolve(JSON.parse(xhr.responseText))
         }
       }

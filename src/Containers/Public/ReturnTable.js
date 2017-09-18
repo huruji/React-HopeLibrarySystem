@@ -33,7 +33,7 @@ class ReturnTable extends Component{
       <section className="main-right-table">
         <table>
           <TableHead text={text} list={headList}/>
-
+          <TableBody list={this.state.list}/>
         </table>
       </section>
     )
