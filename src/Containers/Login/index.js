@@ -4,6 +4,9 @@ import {loginFailed, passwordShort, usernameShort} from './../../utils/formMsg'
 import axios from 'axios';
 import {userLogin, adminLogin} from './../../api/index';
 import post from './../../utils/post';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -28,17 +31,23 @@ class Login extends Component {
     }
     console.log('begin');
     post(url, {
-      password: this.username.value,
+      password: this.password.value,
       username: this.username.value
     }).then(res => {
       if(res.code === 404) {
         return this.setState({errMsg: loginFailed});
       }
-
+      localStorage.setItem('userMsg', true);
+      this.props.loginSuccess(true);
     });
   }
   render() {
     const errMsg = this.state.errMsg;
+    if(this.props.logined) {
+      return (
+        <Redirect to={this.props.match.url.includes('admin') ? '/admin' : '/user'}/>
+      )
+    }
     return (
       <section className="login-bg">
         <form action="">
@@ -60,4 +69,15 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    logined:state.Login.logined
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginSuccess: (userMsg) => dispatch({type: 'LOGIN_SUCCESS', userMsg})
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
