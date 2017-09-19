@@ -9,6 +9,7 @@ export  function post(url, data) {
       sendData.push(dataItem);
     }
     console.log(sendData,url);
+    xhr.withCredentials = true;
     xhr.send(sendData.join('&'));
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4) {

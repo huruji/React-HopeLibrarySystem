@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TableHead from './../../Components/TableList/TableHead';
 import TableBody from './../../Components/TableList/TableBody';
 import {get} from './../../utils/ajax';
-import {userBorrowBook} from './../../api';
+import {userBorrowBook } from './../../api';
 import UserConfig from './../../config/user';
 import {connect} from 'react-redux';
 import {transBorrowBook} from './../../utils/transData'
@@ -30,6 +30,9 @@ class ReturnTable extends Component{
   }
 
   render() {
+    if(this.props.url.includes('reservation')) {
+      headList = UserConfig.headList.reservation;
+    }
     return (
       <section className="main-right-table">
         <table>

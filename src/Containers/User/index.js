@@ -33,11 +33,12 @@ class User extends Component {
             <section className="main-right">
               <Nav linkList={navLinkList}/>
               <section className="main-right-table">
-                <ReturnTable/>
+                <ReturnTable url={this.props.match.url}/>
               </section>
             </section>
           </div>
         </section>
+        <Footer/>
       </div>
     )
   }

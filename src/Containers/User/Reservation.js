@@ -1,16 +1,44 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import Header from './../../Components/Header/index';
+import Footer from './../../Components/Footer/index';
+import Banner from './../../Components/Banner/index';
+import Nav from './../../Components/Nav/index';
+import Aside from './../../Components/Aside';
+import UserConfig from './../../config/user'
+import ReturnTable from './../Public/ReturnTable'
 
-class Reservation extends Component{
+const navLinkList = UserConfig.nav.reservation;
+
+class User extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    console.log('props',this.props);
     if(!this.props.logined) {
       return (
         <Redirect to="/user/login"/>
       )
     }
     return(
-      <div>Reservation</div>
+      <div>
+        <Header />
+        <Banner userName={this.props.userName} userImg={this.props.userImg}/>
+        <section className="main">
+          <div className="container clearfix">
+            <Aside list={UserConfig.aside}/>
+            <section className="main-right">
+              <Nav linkList={navLinkList}/>
+              <section className="main-right-table" >
+                <ReturnTable  url={this.props.match.url}/>
+              </section>
+            </section>
+          </div>
+        </section>
+        <Footer/>
+      </div>
     )
   }
 }
@@ -29,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
 
   }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Reservation);
+export default connect(mapStateToProps, mapDispatchToProps)(User);
