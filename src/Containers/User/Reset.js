@@ -9,7 +9,7 @@ import Aside from './../../Components/Aside';
 import UserConfig from './../../config/user';
 import ResetPassword from './../Public/ResetPassword';
 
-const navLinkList = UserConfig.nav.reservation;
+const navLinkList = UserConfig.nav.account;
 
 class User extends Component {
   constructor(props) {

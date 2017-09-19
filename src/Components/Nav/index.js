@@ -5,7 +5,7 @@ export default (props) => {
   const list = props.linkList.map((item, index) => {
     return (
       <li className="main-right-nav-list-item" key={index}>
-        <NavLink to={item.url} activeClassName="main-right-nav-list-item-active">{item.text}</NavLink>
+        <NavLink to={item.url} exact activeClassName="main-right-nav-list-item-active">{item.text}</NavLink>
       </li>
     )
   })

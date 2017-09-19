@@ -46,7 +46,7 @@ class Login extends Component {
     const errMsg = this.state.errMsg;
     if(this.props.logined) {
       return (
-        <Redirect to={this.props.match.url.includes('admin') ? '/admin' : '/user'}/>
+        <Redirect to={this.props.match.url.includes('admin') ? '/admin' : '/user/borrow'}/>
       )
     }
     return (

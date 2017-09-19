@@ -8,7 +8,7 @@ import Nav from './../../Components/Nav/index';
 import Aside from './../../Components/Aside';
 import UserConfig from './../../config/user'
 import UserInfo from './UserInfo';
-const navLinkList = UserConfig.nav.modify;
+const navLinkList = UserConfig.nav.account;
 
 class User extends Component {
   constructor(props) {

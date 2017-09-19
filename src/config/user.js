@@ -1,18 +1,18 @@
 export default {
   nav: {
     index: [{
-      url: '/user',
+      url: '/user/borrow',
       text: '我的借阅'
     }],
     reservation: [{
       url: '/user/reservation',
       text: '我的预约'
     }],
-    modify: [{
-      url: '/user/modify',
+    account: [{
+      url: '/user/account',
       text: '我的信息'
     }, {
-      url: '/user/reset',
+      url: '/user/account/reset',
       text: '修改密码'
     }],
     book: [{
@@ -25,13 +25,13 @@ export default {
     }]
   },
   aside: [{
-    url: '/user',
+    url: '/user/borrow',
     text: '图书管理'
   }, {
     url: '/user/reservation',
     text: '设备管理'
   }, {
-    url: '/user/modify',
+    url: '/user/account',
     text: '账号管理'
   }, {
     url: '/user/book',

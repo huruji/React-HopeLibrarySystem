@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch}from 'react-router-dom'
+import {Route, Switch, Redirect}from 'react-router-dom'
 import Login from './../Containers/Login'
 import User from './../Containers/User'
 import Reservation from './../Containers/User/Reservation'
@@ -11,10 +11,10 @@ class Routers extends Component {
     return(
       <div>
         <Switch>
-          <Route path="/user" exact component={User}/>
+          <Route path="/user/borrow" exact component={User}/>
           <Route path="/user/reservation" exact component={Reservation}/>
-          <Route path="/user/modify" exact component={Modify}/>
-          <Route path="/user/reset" exact component={Reset}/>
+          <Route path="/user/account" exact component={Modify}/>
+          <Route path="/user/account/reset" exact component={Reset}/>
           <Route path="/user/login" component={Login}/>
           <Route path="/admin/login" component={Login}/>
         </Switch>
