@@ -5,13 +5,14 @@ import {get} from './../../utils/ajax';
 import {userBorrowBook, userReservationEquip } from './../../api';
 import UserConfig from './../../config/user';
 import {connect} from 'react-redux';
-import {transBorrowBook} from './../../utils/transData'
+import {transBorrowBook, transReservationEquip} from './../../utils/transData'
 
 let headList = UserConfig.headList.user;
 let bookText = '你当前暂无借阅';
 let equipText = '你当前暂无预约';
 let text = bookText;
 let url = userBorrowBook;
+let transData = transBorrowBook;
 class ReturnTable extends Component{
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class ReturnTable extends Component{
         })
       }
       self.setState({
-        list: transBorrowBook(res.data)
+        list: transData(res.data)
       })
     })
   }
@@ -48,9 +49,9 @@ class ReturnTable extends Component{
   render() {
     if(this.props.url.includes('reservation')) {
       console.log('reservation');
-      [headList, text, url] = [UserConfig.headList.reservation,equipText,userReservationEquip];
+      [headList, text, url, transData] = [UserConfig.headList.reservation,equipText,userReservationEquip, transReservationEquip];
     } else if(/user$/.test(this.props.url)) {
-      [headList, text, url] = [UserConfig.headList.user,bookText,userBorrowBook];
+      [headList, text, url, transData] = [UserConfig.headList.user,bookText,userBorrowBook, transBorrowBook];
     }
     console.log('url',this.props.url);
     return (
