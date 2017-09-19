@@ -2,41 +2,61 @@ import React, { Component } from 'react';
 import TableHead from './../../Components/TableList/TableHead';
 import TableBody from './../../Components/TableList/TableBody';
 import {get} from './../../utils/ajax';
-import {userBorrowBook } from './../../api';
+import {userBorrowBook, userReservationEquip } from './../../api';
 import UserConfig from './../../config/user';
 import {connect} from 'react-redux';
 import {transBorrowBook} from './../../utils/transData'
 
 let headList = UserConfig.headList.user;
-let text = '';
+let bookText = '你当前暂无借阅';
+let equipText = '你当前暂无预约';
+let text = bookText;
+let url = userBorrowBook;
 class ReturnTable extends Component{
   constructor(props) {
     super(props);
-    this.state ={list: []};
+    this.state ={list: [], text:'',url:props.url};
   }
-
-  componentDidMount() {
+  getData() {
     const self = this;
-    get(userBorrowBook).then(res=>{
-      console.log('res', res);
+    get(url).then(res=>{
       if(res.code === 401) {
         return self.props.logout();
       }
-      console.log(res.data);
+      if(!res.data.length) {
+        return self.setState({
+          text: text
+        })
+      }
       self.setState({
         list: transBorrowBook(res.data)
       })
     })
   }
-
+  componentDidMount() {
+    this.getData();
+  }
+  componentWillUpdate() {
+    console.log('asfasdfsdfa');
+  }
+  componentDidUpdate(prevProps,prevState) {
+    if(prevProps.url !== this.props.url) {
+      this.getData();
+      console.log('ppppp');
+    }
+  }
   render() {
     if(this.props.url.includes('reservation')) {
-      headList = UserConfig.headList.reservation;
+      console.log('reservation');
+      [headList, text, url] = [UserConfig.headList.reservation,equipText,userReservationEquip];
+    } else if(/user$/.test(this.props.url)) {
+      [headList, text, url] = [UserConfig.headList.user,bookText,userBorrowBook];
     }
+    console.log('url',this.props.url);
     return (
       <section className="main-right-table">
         <table>
-          <TableHead text={text} list={headList}/>
+          <TableHead text={this.state.text} list={headList}/>
           <TableBody list={this.state.list}/>
         </table>
       </section>

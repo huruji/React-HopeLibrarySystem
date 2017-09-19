@@ -2,12 +2,17 @@ import React from 'react';
 
 export default (props) => {
   if(props.text) {
+    console.log('head');
     return (
       <thead>
-        <th className="t-10 center">{props.text}</th>
+        <tr>
+          <th className="t-10 center">{props.text}</th>
+        </tr>
       </thead>
     )
   }
+  console.log(props);
+  console.log('headout');
   const list = props.list.map((item, index) => {
     if(index === 0) {
       return (

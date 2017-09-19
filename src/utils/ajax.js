@@ -1,4 +1,5 @@
 export  function post(url, data) {
+  console.log('ajaxurl', url);
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open('post', url ,true);
@@ -22,6 +23,7 @@ export  function post(url, data) {
 }
 
 export function get(url) {
+  console.log('ajaxurl', url);
   return new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
     xhr.open('get', url, true);
@@ -30,6 +32,8 @@ export function get(url) {
     xhr.onreadystatechange = function() {
       if(xhr.readyState === 4) {
         if((xhr.status >=200 && xhr.status < 300)|| (xhr.status===304)) {
+          console.log(typeof xhr.responseText);
+          console.log(xhr.responseText);
           resolve(JSON.parse(xhr.responseText))
         }
       }
