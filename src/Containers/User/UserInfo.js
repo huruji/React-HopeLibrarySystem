@@ -21,10 +21,12 @@ class UserInfo extends Component{
     }
   }
   componentDidMount() {
+    const self = this;
     get(userInfo).then(res => {
       if(res.code === 401) {
-
+        return self.props.logout();
       }
+      self.setState({...res.data});
     })
   }
   render() {
@@ -32,7 +34,8 @@ class UserInfo extends Component{
     const goupRadios = hopeGroup.map((item,index) => {
       return (
         <label className="radio-inline">
-          <input type="radio" className="" name="hopeGroup" value={item} checked={group===item} />
+          <input type="radio" className="" name="hopeGroup" key={index} checked={group===item} />
+          {item}
         </label>
       )
     });
