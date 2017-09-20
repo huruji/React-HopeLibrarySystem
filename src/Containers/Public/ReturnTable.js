@@ -50,7 +50,7 @@ class ReturnTable extends Component{
     if(this.props.url.includes('reservation')) {
       console.log('reservation');
       [headList, text, url, transData] = [UserConfig.headList.reservation,equipText,userReservationEquip, transReservationEquip];
-    } else if(/user$/.test(this.props.url)) {
+    } else if(/borrow/.test(this.props.url)) {
       [headList, text, url, transData] = [UserConfig.headList.user,bookText,userBorrowBook, transBorrowBook];
     }
     console.log('url',this.props.url);
