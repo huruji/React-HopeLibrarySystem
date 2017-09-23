@@ -34,6 +34,7 @@ class UserBook extends Component {
         } else {
           item.borrowText = '借阅';
         }
+
       });
       this.setState((prevState, props) => {
         return {
