@@ -9,3 +9,5 @@ export const userBorrowBook = `${host}user/book/borrow`;
 export const userReservationEquip = `${host}user/equip/reservation`;
 
 export const userInfo = `${host}user/info`;
+
+export const getBook = `${host}book`;

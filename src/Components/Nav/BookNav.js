@@ -7,20 +7,20 @@ class BookNav extends Component{
     super(props);
     this.clickHandle = this.clickHandle.bind(this);
   }
-  clickHandle(id) {
-    this.props.navClick(id)
+  clickHandle(id, text) {
+    this.props.navClick(id, text)
   }
   render () {
     const list = this.props.linkList.map((item, index) => {
       if(index === 0) {
         return (
-          <li onClick={() => this.clickHandle(item.id)} className={this.props.activeNum===item.id ? "main-right-nav-list-item main-right-nav-list-item-active" : "main-right-nav-list-item"}  key={index}>
+          <li onClick={() => this.clickHandle(item.id, item.text)} className={this.props.activeNum===item.id ? "main-right-nav-list-item main-right-nav-list-item-active" : "main-right-nav-list-item"}  key={index}>
             <NavLink to={userConfig.bookNav.url}>{item.text}</NavLink>
           </li>
         )
       }
       return (
-        <li onClick={() => this.clickHandle(item.id)} className={this.props.activeNum===item.id ? "main-right-nav-list-item main-right-nav-list-item-active" : "main-right-nav-list-item"}  key={index}>
+        <li onClick={() => this.clickHandle(item.id, item.text)} className={this.props.activeNum===item.id ? "main-right-nav-list-item main-right-nav-list-item-active" : "main-right-nav-list-item"}  key={index}>
           <a href="javascript:">{item.text}</a>
         </li>
       )

@@ -74,7 +74,7 @@ export default {
     text: '图书借阅'
   }, {
     url: '/user/equip',
-    text: '设备借阅'
+    text: '设备预约'
   }],
   headList: {
     user: [{

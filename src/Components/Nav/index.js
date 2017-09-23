@@ -8,7 +8,7 @@ export default (props) => {
         <NavLink to={item.url} exact activeClassName="main-right-nav-list-item-active">{item.text}</NavLink>
       </li>
     )
-  })
+  });
   return (
     <nav className="main-right-nav">
       <ul className="main-right-nav-list clearfix ">
