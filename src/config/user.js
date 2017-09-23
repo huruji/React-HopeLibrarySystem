@@ -17,12 +17,48 @@ export default {
     }],
     book: [{
       url: '/user/book',
+      id:0,
       text: '全部'
+    }, {
+      url: '/user/book?cate=编程类',
+      id:1,
+      text: '编程类'
+    }, {
+      url: '/user/book?cate=设计类',
+      id:2,
+      text: '设计类'
+    }, {
+      url: '/user/book?cate=摄影类',
+      id:3,
+      text: '摄影类'
+    }, {
+      url: '/user/book?cate=网管类',
+      id:4,
+      text: '网管类'
+    }, {
+      url: '/user/book?cate=人文类',
+      id:5,
+      text: '人文类'
+    }, {
+      url: '/user/book?cate=软件教程类',
+      id:6,
+      text: '软件教程类'
+    }, {
+      url: '/user/book?cate=博雅教育类',
+      id:7,
+      text: '博雅教育类'
+    }, {
+      url: '/user/book?cate=其他',
+      id:8,
+      text: '其他'
     }],
     equip: [{
       url: '/user/equip',
       text: '全部'
-    }]
+    }],
+  },
+  bookNav: {
+    url: '/user/book'
   },
   aside: [{
     url: '/user/borrow',
