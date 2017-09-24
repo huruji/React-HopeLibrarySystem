@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 export default (props) => {
-  const list = props.list.map((item) => {
+  const list = props.list.map((item,index) => {
     if(item.disabled) {
       return (
-        <li className="main-right-borrow-list-item">
+        <li className="main-right-borrow-list-item" key={item.hopeid + index}>
           <div className="main-right-borrow-list-item-img">
             <img src={item.imgsrc} alt="" />
           </div>
@@ -17,7 +17,7 @@ export default (props) => {
       )
     }
     return (
-      <li className="main-right-borrow-list-item">
+      <li className="main-right-borrow-list-item" key={item.hopeid + index}>
         <div className="main-right-borrow-list-item-img">
           <img src={item.imgsrc} alt="" />
         </div>

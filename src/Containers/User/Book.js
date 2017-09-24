@@ -16,17 +16,20 @@ const navLinkList = UserConfig.nav.book;
 class UserBook extends Component {
   constructor(props) {
     super(props);
-    this.state = {activeNum: 0, borrowList: []};
+    this.state = {activeNum: 0, borrowList: [], cate:'全部'};
     console.log(props);
     this.navClick = this.navClick.bind(this);
   }
   navClick(id, text) {
     this.setState({
       activeNum: id
-    })
+    });
+    console.log(text);
+    this.getData(text);
   }
-  componentDidMount() {
-    get(getBook).then((res)=> {
+  getData(cate) {
+    get(getBook + cate).then((res)=> {
+      console.log(res);
       res.books.forEach((item) => {
         if(item.left<1) {
           item.disabled = true;
@@ -34,14 +37,16 @@ class UserBook extends Component {
         } else {
           item.borrowText = '借阅';
         }
-
       });
       this.setState((prevState, props) => {
         return {
-          borrowList: prevState.borrowList.concat(res.books)
+          borrowList: res.books
         }
       })
     })
+  }
+  componentDidMount() {
+    this.getData(this.state.cate);
   }
   render() {
     console.log('props',this.props);

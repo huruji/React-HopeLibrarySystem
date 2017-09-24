@@ -10,4 +10,4 @@ export const userReservationEquip = `${host}user/equip/reservation`;
 
 export const userInfo = `${host}user/info`;
 
-export const getBook = `${host}book`;
+export const getBook = `${host}book?cate=`;
