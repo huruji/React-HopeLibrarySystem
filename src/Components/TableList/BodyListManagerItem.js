@@ -2,12 +2,13 @@
 import React from 'react';
 
 export default (props) => {
-  const handleClick = function(url, data) {
-    props.handleClick(url, data)
+  let handleClick = function(index, bookID, borrowID) {
+    props.handleClick(index,bookID,borrowID)
   };
+  console.log('managerList',props.managerList);
   const managerList = props.managerList.map((item, index) => {
     return (
-      <span onClick={handleClick(item.url, item.data)} key={index}><a href="javascript:" className="js-return-btn">{item.list}</a></span>
+      <span onClick={()=>handleClick(props.index, item.bookID, item.borrowID)} key={index}><a href="javascript:" className="js-return-btn">{item.text}</a></span>
     )
   });
   return (

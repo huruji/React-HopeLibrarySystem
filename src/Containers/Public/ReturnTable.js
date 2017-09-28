@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TableHead from './../../Components/TableList/TableHead';
 import TableBody from './../../Components/TableList/TableBody';
-import {get} from './../../utils/ajax';
-import {userBorrowBook, userReservationEquip } from './../../api';
+import {get, post} from './../../utils/ajax';
+import {userBorrowBook, userReservationEquip, returnBook } from './../../api';
 import UserConfig from './../../config/user';
 import {connect} from 'react-redux';
 import {transBorrowBook, transReservationEquip} from './../../utils/transData'
@@ -16,8 +16,25 @@ let transData = transBorrowBook;
 class ReturnTable extends Component{
   constructor(props) {
     super(props);
-    this.state ={list: [], text:'',url:props.url};
+    this.state ={list: [], text:'',url:props.url, handleClick: function(){}};
+    this.returnBook = this.returnBook.bind(this);
   }
+  returnBook(index,bookID, borrowID) {
+    const self = this;
+    console.log('update',bookID, borrowID);
+    post(returnBook,{bookID, borrowID}).then(res => {
+      if(res.code === 401) {
+        return self.props.logout();
+      }
+      this.setState((prevState) => {
+        console.log('update',bookID, borrowID);
+        return {
+          list: prevState.list.slice(0,index).concat(prevState.list.slice(index+1))
+        }
+      })
+    });
+  }
+
   getData() {
     const self = this;
     get(url).then(res=>{
@@ -29,6 +46,7 @@ class ReturnTable extends Component{
           text: text
         })
       }
+      console.log('self',self);
       self.setState({
         list: transData(res.data)
       })
@@ -58,7 +76,7 @@ class ReturnTable extends Component{
       <section className="main-right-table">
         <table>
           <TableHead text={this.state.text} list={headList}/>
-          <TableBody list={this.state.list}/>
+          <TableBody list={this.state.list} handleClick={this.returnBook}/>
         </table>
       </section>
     )

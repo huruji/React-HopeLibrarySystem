@@ -1,4 +1,4 @@
-export const transBorrowBook = function (data) {
+export const transBorrowBook = function (data, handleClick) {
   let result = [];
   data.forEach((item, index) => {
     let resultItem = [{
@@ -8,12 +8,15 @@ export const transBorrowBook = function (data) {
     }, {
       text: item.returnBefore
     }, {
-      text: '归还',
       managerList: [
-
+        {
+          text: '归还',
+          url:'30000',
+          bookID: item.bookID,
+          borrowID: item.borrowID,
+          handleClick
+        }
       ],
-      bookID: item.bookID,
-      borrowID: item.borrowID
     }];
     result.push(resultItem);
   });
@@ -32,9 +35,11 @@ export const transReservationEquip = function(data) {
     }, {
       text: item.returnBefore
     }, {
-      text: '归还',
       managerList: [
-
+        {
+          text:'归还',
+          list: '鬼皇'
+        }
       ],
       bookID: item.borrowEquipID,
       borrowID: item.borrowID

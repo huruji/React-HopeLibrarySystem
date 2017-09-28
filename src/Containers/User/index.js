@@ -9,13 +9,15 @@ import TableList from './../../Components/TableList/index';
 import Aside from './../../Components/Aside';
 import UserConfig from './../../config/user'
 import ReturnTable from './../Public/ReturnTable'
-
+import {post} from './../../utils/ajax';
+import { returnBook } from './../../api'
 const navLinkList = UserConfig.nav.index;
 
 class User extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     console.log('props',this.props);
     if(!this.props.logined) {
@@ -33,7 +35,7 @@ class User extends Component {
             <section className="main-right">
               <Nav linkList={navLinkList}/>
               <section className="main-right-table">
-                <ReturnTable url={this.props.match.url}/>
+                <ReturnTable url={this.props.match.url} />
               </section>
             </section>
           </div>
@@ -55,7 +57,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    logout: () => {
+      dispatch({type: 'LOGINOUT'})
+    }
   }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(User);

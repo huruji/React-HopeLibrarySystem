@@ -11,3 +11,8 @@ export const userReservationEquip = `${host}user/equip/reservation`;
 export const userInfo = `${host}user/info`;
 
 export const getBook = `${host}book?cate=`;
+
+export const getEquip = `${host}equip`;
+
+export const returnBook = `${host}book/return`;
+
